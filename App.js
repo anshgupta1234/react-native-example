@@ -1,15 +1,25 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import ExampleButton from './components/ExampleButton';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <ExampleButton />
-      <ExampleButton />
-      <ExampleButton />
-    </View>
-  );
+export default class App extends React.Component {
+
+  updateAge = () => {
+    this.setState({ age: this.state.age + 1 });
+  }
+
+  state = {
+    age: 15,
+  }
+
+  render(){
+    return (
+      <View style={styles.container}>
+        <Text>{this.state.age}</Text>
+        <Button onPress={this.updateAge} title="Increase!!" />
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
