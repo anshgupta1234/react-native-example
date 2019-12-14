@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { ScrollView, StyleSheet, Text } from 'react-native';
 import ExampleButton from './components/ExampleButton';
 
 export default class App extends React.Component {
@@ -9,15 +9,22 @@ export default class App extends React.Component {
   }
 
   state = {
-    age: 15,
+    classes: [
+      { name: 'Biology', grade: 89 },
+      { name: 'euro', grade: 75 },
+      { name: 'Math', grade: 89}
+    ]
   }
 
   render(){
     return (
-      <View style={styles.container}>
-        <Text>{this.state.age}</Text>
-        <Button onPress={this.updateAge} title="Increase!!" />
-      </View>
+      <ScrollView contentContainerStyle={styles.container}>
+        {
+          this.state.classes.map(cl => {
+            return <Text>{cl.name}</Text>
+          })
+        }
+      </ScrollView>
     );
   }
 }
