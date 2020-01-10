@@ -1,30 +1,28 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text } from 'react-native';
+import { View, Text, StyleSheet, StatusBar, ScrollView, TouchableWithoutFeedback } from 'react-native';
 import ExampleButton from './components/ExampleButton';
 
 export default class App extends React.Component {
 
-  updateAge = () => {
-    this.setState({ age: this.state.age + 1 });
-  }
-
   state = {
     classes: [
       { name: 'Biology', grade: 89 },
-      { name: 'euro', grade: 75 },
-      { name: 'Math', grade: 89}
+      { name: 'Math', grade: 89},
+      { name: 'How 2 be gangsta 101', grade: 128}
     ]
   }
 
   render(){
     return (
-      <ScrollView contentContainerStyle={styles.container}>
-        {
-          this.state.classes.map(cl => {
-            return <Text>{cl.name}</Text>
-          })
-        }
-      </ScrollView>
+      <View style={styles.container}>
+        <StatusBar hidden />
+        <Text style={styles.title}>Schoolloop Ripoff</Text>
+        <ScrollView contentContainerStyle={styles.scroller}>
+          {
+            this.state.classes.map((item) => <Text>{item.name}</Text>)
+          }
+        </ScrollView>
+      </View>
     );
   }
 }
@@ -32,8 +30,10 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    margin: 20,
   },
+  title: {
+    textAlign: 'center',
+    fontSize: 20
+  }
 });

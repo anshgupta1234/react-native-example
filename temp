@@ -1,0 +1,77 @@
+import React from 'react';
+import { ScrollView, StyleSheet, Text, TouchableWithoutFeedback, View, StatusBar } from 'react-native';
+import ExampleButton from './components/ExampleButton';
+
+export default class App extends React.Component {
+
+  state = {
+    classes: [
+      { name: 'Biology', grade: 89 },
+      { name: 'euro', grade: 75 },
+      { name: 'Math', grade: 89},
+      { name: 'How 2 be gangsta 101', grade: 128}
+    ]
+  }
+
+  render(){
+    return (
+      <View style={{ flex: 1, margin: 10, }}>
+        <StatusBar hidden />
+        <Text style={{ fontSize: 20, textAlign: "center" }}>
+          Schoolloop Ripoff 
+        </Text>
+        <ScrollView contentContainerStyle={styles.container}>
+          {
+            this.state.classes.map(cl => {
+              return (
+                <TouchableWithoutFeedback style={styles.classBox}>
+                  <View style={styles.classBox}>
+                    <Text>{cl.name}</Text>
+                    <Text>{cl.grade + "%"}</Text>
+                  </View>
+                </TouchableWithoutFeedback>
+              )
+            })
+          }
+          <TouchableWithoutFeedback style={styles.addTouch}>
+            <View style={styles.addTouch}>
+              <Text>Add Class</Text>
+            </View>
+          </TouchableWithoutFeedback>
+        </ScrollView>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    margin: 10
+  },
+  classBox: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    height: 100,
+    margin: 10,
+    backgroundColor: '#bdc3c7',
+    padding: 10,
+    borderRadius: 10,
+    elevation: 4
+  },
+  addTouch: {
+    width: '100%',
+    height: 100,
+    margin: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: '#7f8c8d',
+    borderStyle: 'dashed',
+  },
+});
